@@ -40,6 +40,14 @@
 - configure webpack `webpack.config.js`
 - then run `webpack`
 
+### generate package file
+- `npm init` generates the package.json file automatically
+- great for putting dependencies using `npm install`
+- also `package.json` add a little bit of automation: It allows to add a `prestart` command and a `start` for running code using a shorthand command like `npm start`.
+- this concludes environment setup for now
+
+ 
+
 
 
 

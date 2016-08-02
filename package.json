@@ -1,0 +1,30 @@
+{
+  "name": "firereact",
+  "version": "0.0.1",
+  "description": "Testing firebase with react",
+  "main": "app-server.js",
+  "dependencies": {
+    "babel-core": "^6.11.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-react": "^6.11.1",
+    "bootstrap": "^3.3.7",
+    "express": "^4.14.0",
+    "react": "^15.3.0",
+    "webpack": "^1.13.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "prestart": "webpack",
+    "start": "node app-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omarsar/firebase_react_app.git"
+  },
+  "author": "Elvis Saravia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/omarsar/firebase_react_app/issues"
+  },
+  "homepage": "https://github.com/omarsar/firebase_react_app#readme"
+}
