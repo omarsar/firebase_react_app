@@ -9,8 +9,11 @@
     "babel-preset-react": "^6.11.1",
     "bootstrap": "^3.3.7",
     "express": "^4.14.0",
+    "firebase": "^3.2.1",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
+    "reactfire": "^1.0.0",
+    "showdown": "^1.4.2",
     "socket.io": "^1.4.8",
     "socket.io-client": "^1.4.8",
     "webpack": "^1.13.1"

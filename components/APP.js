@@ -1,21 +1,83 @@
 var React = require('react');
 var io = require('socket.io-client');
+var ReactFireMixin = require('reactfire');
+var showdown = require('showdown')
+
+var converter = new showdown.Converter();
+
+var Comment = React.createClass({
+  render: function() {
+    var rawMarkup = converter.makeHtml(this.props.children.toString());
+    return (
+      <div className='comment'>
+        <h2 className='commentAuthor'>{this.props.author}</h2>
+        <span dangerouslySetInnerHTML={{__html: rawMarkup}} />
+      </div>
+    );
+  }
+});
+
+
+var CommentList = React.createClass({
+  render: function() {
+    var commentNodes = this.props.data.map(function (comment, index) {
+      return <Comment key={index} author={comment.author}>{comment.text}</Comment>;
+    });
+    return <div className='commentList'>{commentNodes}</div>;
+  }
+});
+
+
+var CommentForm = React.createClass({
+  handleSubmit: function(event) {
+    event.preventDefault();
+    var author = this.refs.author.value.trim();
+    var text = this.refs.text.value.trim();
+    this.props.onCommentSubmit({author: author, text: text});
+    this.refs.author.value = '';
+    this.refs.text.value = '';
+  },
+
+  render: function() {
+    return (
+      <form className='commentForm' onSubmit={this.handleSubmit}>
+        <input type='text' placeholder='Your name' ref='author' />
+        <input type='text' placeholder='Say something...' ref='text' />
+        <input type='submit' value='Post' />
+      </form>
+    );
+  }
+});
+
 
 var APP = React.createClass({
+  mixins: [ReactFireMixin],
 
-  // mounts first
-  componentWillMount(){
-    this.socket = io('http://localhost:3000');
-    this.socket.on('connect', this.connect)
+  handleCommentSubmit: function(comment) {
+    // Here we push the update out to Firebase and let ReactFire update this.state.data
+    this.firebaseRefs['data'].push(comment);
   },
 
-  // connect function
-  connect() {
-    alert("Connected: " + this.socket.id);
+  getInitialState: function() {
+    return {
+      data: []
+    };
   },
 
-  render() {
-    return (<h1>Hello World From React</h1>);
+  componentWillMount: function() {
+    // Here we bind the component to Firebase and it handles all data updates,
+    // no need to poll as in the React example.
+    this.bindAsArray(firebase.database().ref('commentsBox'), 'data');
+  },
+
+  render: function() {
+    return (
+      <div className='commentBox'>
+        <h1>Comments</h1>
+        <CommentList data={this.state.data} />
+        <CommentForm onCommentSubmit={this.handleCommentSubmit} />
+      </div>
+    );
   }
 });
 

@@ -54,6 +54,9 @@
 - setup socket in `app-client.js`
 
 
+### Adding firebase support
+- `npm install --save reactfire firebase`
+
 
 
 
