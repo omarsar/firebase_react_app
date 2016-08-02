@@ -37,6 +37,7 @@
 - install webpack globally: `sudo npm install -g webpack`
 - install babel loader  (convert jsx code, es6): `npm install babel-loader`
 - patch for supporting react `npm install babel-preset-react` 
+- Add other React libarary `react-dom`
 - configure webpack `webpack.config.js`
 - then run `webpack`
 
@@ -46,7 +47,14 @@
 - also `package.json` add a little bit of automation: It allows to add a `prestart` command and a `start` for running code using a shorthand command like `npm start`.
 - this concludes environment setup for now
 
- 
+
+### incorporate socket.io
+- install both socket libraries for server and client: `npm install --save socket.io socket.io-client`. The `--save` flag states that it wants to save the dependencies to the `package.json` file.
+- modify `app-server.js` and add socket to listen to same server address
+- setup socket in `app-client.js`
+
+
+
 
 
 
