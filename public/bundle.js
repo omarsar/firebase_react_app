@@ -45,16 +45,10 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var firebase = __webpack_require__(1);
-
 	var config = __webpack_require__(3);
 
-	//var config = {
-	//  apiKey: "AIzaSyAoVg7i7fGXpL9F0Cw00-og3QPscwks9zU",
-	//  authDomain: "fir-react-8f741.firebaseapp.com",
-	//  databaseURL: "https://fir-react-8f741.firebaseio.com"
-	//};
-
 	firebase.initializeApp(config);
+
 	var reactfire = __webpack_require__(4);
 	var React = __webpack_require__(5);
 	var ReactDOM = __webpack_require__(39);

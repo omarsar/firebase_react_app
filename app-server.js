@@ -11,7 +11,7 @@ var server = app.listen(3000);
 // socket address
 var io = require('socket.io').listen(server);
 
-// what happens when someone connects to socket
+// triggers when someone connects to socket
 io.sockets.on('connection', function(socket){
   console.log("Connected: %s", socket.id);
 })
